@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wilderness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Game Start Screen -->
+  <div id="start-screen">
+    <h1>Welcome to The Wilderness</h1>
+    <button id="start-game-btn">Start Game</button>
+  </div>
+
+  <!-- Main Game Screen (hidden by default) -->
+  <div id="game-container" style="display: none;">
+    <header>
+      <h1>The Wilderness</h1>
+    </header>
+    <main>
+      <!-- Dice Area (Top Right) -->
+      <div id="dice-area">
+        <h3>Dice Rolls</h3>
+        <p id="dice-rolls">Roll the dice to attack!</p>
+      </div>
+
+      <!-- Player and Beast Areas Side by Side -->
+      <div id="player-beast-container">
+        <!-- Player Area -->
+        <div id="player-area">
+          <h3>Player</h3>
+          <div id="player-card-container">
+            <!-- Player card will be dynamically added here -->
+          </div>
+        </div>
+
+        <!-- Beast Area -->
+        <div id="beast-area">
+          <h3>Beast</h3>
+          <div id="beast-card-container">
+            <!-- Beast card will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Hand Area (Hidden by Default) -->
+      <div id="hand-container">
+        <button id="toggle-hand-btn">Show Hand ▼</button>
+        <div id="hand-area" style="display: none;">
+          <h3>Player's Hand</h3>
+          <ul id="card-list">
+            <!-- Item cards will be dynamically added here -->
+          </ul>
+        </div>
+      </div>
+
+      <div id="action-area">
+        <h3 id="initiative-indicator">Player's action</h3>
+        <h4 id="turn-counter">Turn: 1</h4> <!-- Turn counter display -->
+        <div id="buttons-container">
+          <!-- Buttons will be dynamically added here -->
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Game in progress...</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

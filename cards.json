@@ -1,0 +1,10 @@
+{
+  "cards": [
+    { "id": 1, "name": "Fireball", "type": "item", "effect": "Deal 5 damage to a target." },
+    { "id": 2, "name": "Healing Potion", "type": "item", "effect": "Restore 5 spirit to yourself." },
+    { "id": 3, "name": "Lucky Dice", "type": "item", "effect": "Add +1 to all dice rolls." },
+    { "id": 4, "name": "Shield", "type": "item", "effect": "Block 3 damage from the next attack." },
+    { "id": 5, "name": "Lioness", "type": "beast", "attackDice": 2, "spirit": 21 },
+    { "id": 6, "name": "Sloth", "type": "beast", "attackDice": 1, "spirit": 30 }
+  ]
+}

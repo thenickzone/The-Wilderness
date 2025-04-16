@@ -1,0 +1,274 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  /* General container styling */
+  #game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  header h1 {
+    color: #333;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #player-area, #hand-area {
+    border: 2px solid #333;
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    background-color: #fff;
+  }
+  
+  footer {
+    margin-top: 20px;
+    color: #666;
+  }
+
+  /* Beast card styling */
+  .beast-card {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    width: 150px; /* Reduced width */
+    height: 200px; /* Reduced height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    position: relative; /* Allows positioning of child elements */
+  }
+  
+  .beast-card h2 {
+    font-size: 1.2em; /* Reduced font size */
+    text-align: center;
+    margin: 40px 0 0 0; /* Push the name down */
+  }
+  
+  .beast-card .spirit {
+    font-size: 1em; /* Reduced font size */
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border-radius: 50%;
+    width: 40px; /* Reduced size */
+    height: 40px; /* Reduced size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .beast-card .traits {
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Highlight clickable objects */
+  .clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .clickable:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Dice area styling (Top Right) */
+  #dice-area {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  #dice-rolls {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Player and Beast card containers */
+  #player-card-container, #beast-card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  /* Player card styling (same as beast card) */
+  .player-card {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    width: 150px; /* Reduced width */
+    height: 200px; /* Reduced height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .player-card .spirit {
+    font-size: 1em; /* Reduced font size */
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border-radius: 50%;
+    width: 40px; /* Reduced size */
+    height: 40px; /* Reduced size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .player-card h2 {
+    font-size: 1.2em; /* Reduced font size */
+    text-align: center;
+    margin: 40px 0 0 0;
+  }
+
+  /* Player and Beast areas side by side */
+  #player-area, #beast-area {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 250px; /* Increased width */
+    height: 300px; /* Increased height */
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  #player-beast-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between player and beast containers */
+    margin-bottom: 20px;
+  }
+
+  /* Hand container styling */
+  #hand-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  #hand-area {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 400px;
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  #card-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Item card styling */
+  .item-card {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .item-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .item-card.highlight {
+    border-color: #ff4500;
+    background-color: #ffe4e1;
+  }
+
+  .item-card h4 {
+    font-size: 1.2em;
+    margin: 0;
+  }
+
+  .item-card p {
+    font-size: 0.9em;
+    text-align: center;
+  }
+
+  /* Hand area and dice area styling */
+  #hand-area, #dice-area {
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    width: 400px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  #action-area {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  button {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #ddd;
+  }
