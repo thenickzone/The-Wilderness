@@ -6,7 +6,7 @@ body {
   }
   
   /* General container styling */
-  #game-container {
+  .gameContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@ body {
     margin-top: 20px;
   }
   
-  #player-area, #hand-area {
+  .playerArea, .handArea {
     border: 2px solid #333;
     padding: 10px;
     margin: 10px;
@@ -39,7 +39,7 @@ body {
   }
 
   /* Beast card styling */
-  .beast-card {
+  .beastCard {
     border: 2px solid #333;
     border-radius: 8px;
     background-color: #f0f8ff;
@@ -55,13 +55,13 @@ body {
     position: relative; /* Allows positioning of child elements */
   }
   
-  .beast-card h2 {
+  .beastCard h2 {
     font-size: 1.2em; /* Reduced font size */
     text-align: center;
     margin: 40px 0 0 0; /* Push the name down */
   }
   
-  .beast-card .spirit {
+  .beastCard .spirit {
     font-size: 1em; /* Reduced font size */
     font-weight: bold;
     color: #fff;
@@ -77,7 +77,7 @@ body {
     right: 10px;
   }
   
-  .beast-card .traits {
+  .beastCard .traits {
     font-size: 0.9em;
     text-align: center;
     margin-top: 20px;
@@ -95,7 +95,7 @@ body {
   }
 
   /* Dice area styling (Top Right) */
-  #dice-area {
+  .diceArea {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -108,21 +108,30 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  #dice-rolls {
+  .diceRolls {
     font-size: 1em;
     font-weight: bold;
     color: #333;
   }
 
   /* Player and Beast card containers */
-  #player-card-container, #beast-card-container {
+  .playerCardContainer, .beastCardContainer {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 250px; /* Increased width */
+    height: 300px; /* Increased height */
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   /* Player card styling (same as beast card) */
-  .player-card {
+  .playerCard {
     border: 2px solid #333;
     border-radius: 8px;
     background-color: #f0f8ff;
@@ -137,7 +146,7 @@ body {
     position: relative;
   }
   
-  .player-card .spirit {
+  .playerCard .spirit {
     font-size: 1em; /* Reduced font size */
     font-weight: bold;
     color: #fff;
@@ -153,29 +162,46 @@ body {
     right: 10px;
   }
   
-  .player-card h2 {
+  .playerCard h2 {
     font-size: 1.2em; /* Reduced font size */
     text-align: center;
     margin: 40px 0 0 0;
   }
 
-  /* Player and Beast areas side by side */
-  #player-area, #beast-area {
+  /* Player and Beast cards */
+  .playerCard, .beastCard {
     border: 2px solid #333;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    width: 250px; /* Increased width */
-    height: 300px; /* Increased height */
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f0f8ff;
+    width: 150px; /* Reduced width */
+    height: 200px; /* Reduced height */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  /* Spirit styling for both player and beast cards */
+  .playerCard .spirit, .beastCard .spirit {
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
   
-  #player-beast-container {
+  .playerBeastContainer {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between player and beast containers */
@@ -183,12 +209,12 @@ body {
   }
 
   /* Hand container styling */
-  #hand-container {
+  .handContainer {
     margin-top: 20px;
     text-align: center;
   }
 
-  #hand-area {
+  .handArea {
     border: 2px solid #333;
     border-radius: 8px;
     background-color: #f9f9f9;
@@ -199,13 +225,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
-  #card-list {
+  .cardList {
     list-style: none;
     padding: 0;
   }
 
   /* Item card styling */
-  .item-card {
+  .itemCard {
     border: 2px solid #333;
     border-radius: 8px;
     background-color: #f0f8ff;
@@ -222,34 +248,34 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .item-card:hover {
+  .itemCard:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
 
-  .item-card.highlight {
+  .itemCard.highlight {
     border-color: #ff4500;
     background-color: #ffe4e1;
   }
 
-  .item-card.selected {
+  .itemCard.selected {
     background-color: #f0f8ff; /* Light blue background */
     border: 2px solid #007bff; /* Blue border */
     cursor: pointer;
   }
 
-  .item-card h4 {
+  .itemCard h4 {
     font-size: 1.2em;
     margin: 0;
   }
 
-  .item-card p {
+  .itemCard p {
     font-size: 0.9em;
     text-align: center;
   }
 
   /* Hand area and dice area styling */
-  #hand-area, #dice-area {
+  .handArea, .diceArea {
     border: 1px solid #333;
     border-radius: 8px;
     background-color: #f0f8ff;
@@ -260,7 +286,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  #action-area {
+  .actionArea {
     margin-top: 20px;
     text-align: center;
   }

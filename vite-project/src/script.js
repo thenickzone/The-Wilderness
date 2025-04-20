@@ -1,3 +1,5 @@
+import styles from './styles.module.css';
+
 // Constants for initiative management
 const INITIATIVE_PLAYER = "player";
 const INITIATIVE_BEAST = "beast";
@@ -26,16 +28,54 @@ document.addEventListener("DOMContentLoaded", () => {
     startGameBtn.addEventListener("click", startGame);
   }
 
+  // Add event listener to the toggle hand button
+  const toggleHandBtn = document.getElementById("toggle-hand-btn");
+  if (toggleHandBtn) {
+    toggleHandBtn.addEventListener("click", toggleHand); // Only toggle visibility, no auto-population
+  }
+
+  // Apply styles to static containers
+  const gameContainer = document.getElementById("game-container");
+  if (gameContainer) {
+    gameContainer.classList.add(styles.gameContainer);
+  }
+
+  const diceArea = document.getElementById("dice-area");
+  if (diceArea) {
+    diceArea.classList.add(styles.diceArea);
+  }
+
+  const playerBeastContainer = document.getElementById("player-beast-container");
+  if (playerBeastContainer) {
+    playerBeastContainer.classList.add(styles.playerBeastContainer);
+  }
+
+  const handContainer = document.getElementById("hand-container");
+  if (handContainer) {
+    handContainer.classList.add(styles.handContainer);
+  }
+
+  const actionArea = document.getElementById("action-area");
+  if (actionArea) {
+    actionArea.classList.add(styles.actionArea);
+  }
+
+  const handArea = document.getElementById("hand-area");
+  if (handArea) {
+    handArea.classList.add(styles.handArea);
+  }
+});
+
 // Function to fetch beasts from cards.json
 async function fetchBeasts() {
-  const response = await fetch("cards.json");
+  const response = await fetch("/cards.json");
   const data = await response.json();
   return data.cards.filter((card) => card.type === "beast"); // Return only beasts
 }
 
 // Function to fetch items from cards.json
 async function fetchItems() {
-  const response = await fetch("cards.json");
+  const response = await fetch("/cards.json");
   const data = await response.json();
   return data.cards.filter((card) => card.type === "item"); // Return only items
 }
@@ -49,9 +89,12 @@ function createPlayerCard() {
     return;
   }
 
+  // Add the container style
+  playerCardContainer.classList.add(styles.playerCardContainer);
+
   playerCardContainer.innerHTML = `
-    <div class="player-card">
-      <div class="spirit" id="player-spirit">${playerSpirit}</div>
+    <div class="${styles.playerCard}">
+      <div class="${styles.spirit}" id="player-spirit">${playerSpirit}</div>
       <h2>Player</h2>
     </div>
   `;
@@ -75,11 +118,14 @@ async function generateBeast() {
     return;
   }
 
+  // Add the container style
+  beastCardContainer.classList.add(styles.beastCardContainer);
+
   beastCardContainer.innerHTML = `
-    <div class="beast-card" data-id="${currentBeast.id}">
-      <div class="spirit" id="beast-spirit">${currentBeast.spirit}</div>
+    <div class="${styles.beastCard}" data-id="${currentBeast.id}">
+      <div class="${styles.spirit}" id="beast-spirit">${currentBeast.spirit}</div>
       <h2>${currentBeast.name}</h2>
-      <div class="traits">
+      <div class="${styles.traits}">
         ${currentBeast.attackDice === 1 ? "Passive: Only rolls one dice" : ""}
       </div>
     </div>
@@ -171,8 +217,8 @@ function handleAttack() {
     diceRolls.textContent = `You rolled: ${dice1} and ${dice2} (Total: ${totalDamage})`;
 
     // Highlight the beast card as clickable
-    const beastCard = document.querySelector(".beast-card");
-    beastCard.classList.add("clickable");
+    const beastCard = document.querySelector(`.${styles.beastCard}`);
+    beastCard.classList.add(styles.clickable);
 
     beastCard.addEventListener("click", function handlePlayerAttack() {
       currentBeast.spirit -= totalDamage;
@@ -182,7 +228,7 @@ function handleAttack() {
 
       console.log(`Beast took ${totalDamage} damage. Remaining spirit: ${currentBeast.spirit}`);
 
-      beastCard.classList.remove("clickable");
+      beastCard.classList.remove(styles.clickable);
       beastCard.removeEventListener("click", handlePlayerAttack);
 
       if (currentBeast.spirit <= 0) {
@@ -197,8 +243,8 @@ function handleAttack() {
     diceRolls.textContent = `Beast rolled: ${dice1}${dice2 ? ` and ${dice2}` : ""} (Total: ${totalDamage})`;
 
     // Highlight the player card as clickable
-    const playerCard = document.querySelector(".player-card");
-    playerCard.classList.add("clickable");
+    const playerCard = document.querySelector(`.${styles.playerCard}`);
+    playerCard.classList.add(styles.clickable);
 
     playerCard.addEventListener("click", function handleBeastAttack() {
       playerSpirit -= totalDamage;
@@ -208,7 +254,7 @@ function handleAttack() {
 
       console.log(`Player took ${totalDamage} damage. Remaining spirit: ${playerSpirit}`);
 
-      playerCard.classList.remove("clickable");
+      playerCard.classList.remove(styles.clickable);
       playerCard.removeEventListener("click", handleBeastAttack);
 
       if (playerSpirit <= 0) {
@@ -243,9 +289,9 @@ function handleAttackRoll() {
   diceRolls.textContent = `You rolled: ${dice1} and ${dice2} (Total: ${attackRoll})`;
 
   // Highlight beasts as clickable
-  const beastCard = document.querySelector(".beast-card");
+  const beastCard = document.querySelector(`.${styles.beastCard}`);
   if (beastCard) {
-    beastCard.classList.add("clickable");
+    beastCard.classList.add(styles.clickable);
     beastCard.addEventListener("click", handleBeastClick);
   }
 }
@@ -264,7 +310,7 @@ function handleBeastClick(event) {
   console.log(`Beast took ${attackRoll} damage. Remaining spirit: ${currentBeast.spirit}`);
 
   // Remove the clickable class and event listener
-  beastCard.classList.remove("clickable");
+  beastCard.classList.remove(styles.clickable);
   beastCard.removeEventListener("click", handleBeastClick);
 
   // Check if the beast is defeated
@@ -303,8 +349,8 @@ function handleBeastAttack() {
   diceRolls.textContent = `Beast rolled: ${dice1}${dice2 ? ` and ${dice2}` : ""} (Total: ${totalDamage})`;
 
   // Highlight the player card as clickable
-  const playerCard = document.querySelector(".player-card");
-  playerCard.classList.add("clickable");
+  const playerCard = document.querySelector(`.${styles.playerCard}`);
+  playerCard.classList.add(styles.clickable);
 
   playerCard.addEventListener("click", function handlePlayerDamage() {
     playerSpirit -= totalDamage;
@@ -316,7 +362,7 @@ function handleBeastAttack() {
     console.log(`Player took ${totalDamage} damage. Remaining spirit: ${playerSpirit}`);
 
     // Remove the clickable class and event listener
-    playerCard.classList.remove("clickable");
+    playerCard.classList.remove(styles.clickable);
     playerCard.removeEventListener("click", handlePlayerDamage);
 
     if (playerSpirit <= 0) {
@@ -369,8 +415,8 @@ function preparePlayerInitiative() {
 
   // Dynamically create the player's action buttons
   buttonsContainer.innerHTML = `
-    <button id="attack-btn">Attack</button>
-    <button id="meditate-btn">Meditate</button>
+    <button id="attack-btn" class="${styles.button}">Attack</button>
+    <button id="meditate-btn" class="${styles.button}">Meditate</button>
   `;
 
   // Attach event listener to the "Attack" button
@@ -416,7 +462,7 @@ function addItemToHand(item) {
 
   // Create the item card
   const itemCard = document.createElement("li");
-  itemCard.classList.add("item-card");
+  itemCard.classList.add(styles.itemCard);
   itemCard.innerHTML = `
     <h4>${item.name}</h4>
     <p>${item.effect}</p>
@@ -424,10 +470,10 @@ function addItemToHand(item) {
 
   // Add hover and click functionality
   itemCard.addEventListener("mouseenter", () => {
-    itemCard.classList.add("highlight");
+    itemCard.classList.add(styles.highlight);
   });
   itemCard.addEventListener("mouseleave", () => {
-    itemCard.classList.remove("highlight");
+    itemCard.classList.remove(styles.highlight);
   });
   itemCard.addEventListener("click", () => {
     selectItem(item);
@@ -444,18 +490,18 @@ function selectItem(item) {
 
   // Highlight the selected item
   const cardList = document.getElementById("card-list");
-  const itemCards = cardList.querySelectorAll(".item-card");
-  itemCards.forEach((card) => card.classList.remove("selected")); // Remove the 'selected' class from all items
+  const itemCards = cardList.querySelectorAll(`.${styles.itemCard}`);
+  itemCards.forEach((card) => card.classList.remove(styles.selected)); // Remove the 'selected' class from all items
   const selectedCard = Array.from(itemCards).find((card) => card.querySelector("h4").textContent === item.name);
   if (selectedCard) {
-    selectedCard.classList.add("selected"); // Add the 'selected' class to the clicked item
+    selectedCard.classList.add(styles.selected); // Add the 'selected' class to the clicked item
   }
 
   // Highlight valid targets (player and beast cards)
-  const playerCard = document.querySelector(".player-card");
-  const beastCard = document.querySelector(".beast-card");
-  if (playerCard) playerCard.classList.add("clickable");
-  if (beastCard) beastCard.classList.add("clickable");
+  const playerCard = document.querySelector(`.${styles.playerCard}`);
+  const beastCard = document.querySelector(`.${styles.beastCard}`);
+  if (playerCard) playerCard.classList.add(styles.clickable);
+  if (beastCard) beastCard.classList.add(styles.clickable);
 
   // Add event listeners to targets
   if (playerCard) {
@@ -493,23 +539,24 @@ function handleTargetSelection(target, targetElement) {
   resetSelection();
 }
 
+// Function to reset selection
 function resetSelection() {
   selectedItem = null;
 
   // Remove highlights from items
   const cardList = document.getElementById("card-list");
-  const itemCards = cardList.querySelectorAll(".item-card");
-  itemCards.forEach((card) => card.classList.remove("highlight", "selected")); // Remove both 'highlight' and 'selected' classes
+  const itemCards = cardList.querySelectorAll(`.${styles.itemCard}`);
+  itemCards.forEach((card) => card.classList.remove(styles.highlight, styles.selected)); // Remove both 'highlight' and 'selected' classes
 
   // Remove clickable class and event listeners from targets
-  const playerCard = document.querySelector(".player-card");
-  const beastCard = document.querySelector(".beast-card");
+  const playerCard = document.querySelector(`.${styles.playerCard}`);
+  const beastCard = document.querySelector(`.${styles.beastCard}`);
   if (playerCard) {
-    playerCard.classList.remove("clickable");
+    playerCard.classList.remove(styles.clickable);
     playerCard.replaceWith(playerCard.cloneNode(true)); // Remove event listeners
   }
   if (beastCard) {
-    beastCard.classList.remove("clickable");
+    beastCard.classList.remove(styles.clickable);
     beastCard.replaceWith(beastCard.cloneNode(true)); // Remove event listeners
   }
 }
@@ -560,42 +607,64 @@ function applyItemEffect(item, target) {
     playerShield = targetStats.shield;
 
     // Update the UI
-    document.getElementById("player-spirit").textContent = playerSpirit;
-    document.getElementById("player-power").textContent = `Power: ${playerPower}`;
-    document.getElementById("player-shield").textContent = `Shield: ${playerShield}`;
+    const playerSpiritElement = document.getElementById("player-spirit");
+    if (playerSpiritElement) {
+      playerSpiritElement.textContent = playerSpirit;
+    } else {
+      console.warn("player-spirit element not found!");
+    }
+
+    const playerPowerElement = document.getElementById("player-power");
+    if (playerPowerElement) {
+      playerPowerElement.textContent = `Power: ${playerPower}`;
+    }
+
+    const playerShieldElement = document.getElementById("player-shield");
+    if (playerShieldElement) {
+      playerShieldElement.textContent = `Shield: ${playerShield}`;
+    }
   } else if (target === "beast") {
     currentBeast.spirit = targetStats.spirit;
     currentBeast.power = targetStats.power;
     currentBeast.shield = targetStats.shield;
 
     // Update the UI
-    document.getElementById("beast-spirit").textContent = currentBeast.spirit;
-    document.getElementById("beast-power").textContent = `Power: ${currentBeast.power}`;
-    document.getElementById("beast-shield").textContent = `Shield: ${currentBeast.shield}`;
+    const beastSpiritElement = document.getElementById("beast-spirit");
+    if (beastSpiritElement) {
+      beastSpiritElement.textContent = currentBeast.spirit;
+    } else {
+      console.warn("beast-spirit element not found!");
+    }
+
+    const beastPowerElement = document.getElementById("beast-power");
+    if (beastPowerElement) {
+      beastPowerElement.textContent = `Power: ${currentBeast.power}`;
+    }
+
+    const beastShieldElement = document.getElementById("beast-shield");
+    if (beastShieldElement) {
+      beastShieldElement.textContent = `Shield: ${currentBeast.shield}`;
+    }
   }
 
   // Check if the beast is defeated
   if (target === "beast" && currentBeast.spirit <= 0) {
     alert(`${currentBeast.name} has been defeated!`);
-    const beastCard = document.querySelector(".beast-card");
+    const beastCard = document.querySelector(`.${styles.beastCard}`);
     if (beastCard) beastCard.innerHTML = `<h2>${currentBeast.name} (Defeated)</h2>`;
   }
 
   // Remove the item from the hand
   const cardList = document.getElementById("card-list");
-  const itemCards = cardList.querySelectorAll(".item-card");
+  const itemCards = cardList.querySelectorAll(`.${styles.itemCard}`);
   const selectedCard = Array.from(itemCards).find((card) => card.querySelector("h4").textContent === item.name);
   if (selectedCard) {
-    selectedCard.remove(); // Remove the card from the DOM
+    selectedCard.remove();
+    console.log(`Removed card: ${item.name} from the hand.`);
+  } else {
+    console.warn(`Card: ${item.name} not found in the hand.`);
   }
 
   // Reset the selection
   resetSelection();
 }
-
-  // Add event listener to the toggle hand button
-  const toggleHandBtn = document.getElementById("toggle-hand-btn");
-  if (toggleHandBtn) {
-    toggleHandBtn.addEventListener("click", toggleHand); // Only toggle visibility, no auto-population
-  }
-;})

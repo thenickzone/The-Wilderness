@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Wilderness</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Game Start Screen -->
@@ -31,13 +30,9 @@
         <div id="player-area">
           <h3>Player</h3>
           <div id="player-card-container">
-            <div class="player-card">
+            <!-- Player card will be dynamically added here -->
+            <div class="playerCard">
               <div class="spirit" id="player-spirit">50</div>
-              <div class="stats">
-                <p id="player-power">Power: 0</p>
-                <p id="player-shield">Shield: 0</p>
-              </div>
-              <h2>Player</h2>
             </div>
           </div>
         </div>
@@ -46,13 +41,9 @@
         <div id="beast-area">
           <h3>Beast</h3>
           <div id="beast-card-container">
-            <div class="beast-card">
+            <!-- Beast card will be dynamically added here -->
+            <div class="beastCard">
               <div class="spirit" id="beast-spirit">30</div>
-              <div class="stats">
-                <p id="beast-power">Power: 0</p>
-                <p id="beast-shield">Shield: 0</p>
-              </div>
-              <h2>Beast</h2>
             </div>
           </div>
         </div>
@@ -81,6 +72,6 @@
       <p>Game in progress...</p>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script type="module" src="/src/script.js"></script>
 </body>
 </html>
